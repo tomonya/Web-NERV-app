@@ -1,12 +1,15 @@
 <!doctype html>
 <html>
-  <head>
-    
-  </head>
   <body>
     <script>
-        const res = await fetch("https://api.p2pquake.net/v2/history?codes=551");
-        document.write(res)
+      fetch("https://api.p2pquake.net/v2/history?codes=551")
+      .then(response => response.json())
+      .then(data => {
+        Document.write("<p>" + data + "</p>); // 取得した地震データを出力
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
     </script>
   </body>
 </html>
