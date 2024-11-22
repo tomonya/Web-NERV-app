@@ -1,15 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <body>
-    <script>
-      fetch("https://api.p2pquake.net/v2/history?codes=551")
-      .then(response => response.json())
-      .then(data => {
-        Document.write("<p>" + data + "</p>); // 取得した地震データを出力
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    </script>
-  </body>
+<head>
+  <title>地震情報</title>
+</head>
+<body>
+  <div id="output"></div>
+
+  <script>
+    fetch("https://api.p2pquake.net/v2/history?codes=551")
+      .then(response => response.json())
+      .then(data => {
+        // 最初の地震のマグニチュードと発生時刻を表示
+        const firstEarthquake = data.features[0];
+        const magnitude = firstEarthquake.properties.mag;
+        const time = new Date(firstEarthquake.properties.time);
+
+        const outputElement = document.getElementById('output');
+        outputElement.textContent = `マグニチュード: ${magnitude}, 発生時刻: ${time.toLocaleString()}`;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+</body>
 </html>
