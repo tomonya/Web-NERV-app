@@ -7,20 +7,10 @@
   <div id="output"></div>
 
   <script>
-    fetch("https://api.p2pquake.net/v2/history?codes=551")
-      .then(response => response.json())
-      .then(data => {
-        // 最初の地震のマグニチュードと発生時刻を表示
-        const firstEarthquake = data.features[0];
-        const magnitude = firstEarthquake.properties.mag;
-        const time = new Date(firstEarthquake.properties.time);
-
-        const outputElement = document.getElementById('output');
-        outputElement.textContent = `マグニチュード: ${magnitude}, 発生時刻: ${time.toLocaleString()}`;
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    async function main() {
+      // 最新の地震情報が取得できるURL
+      const API_URL = 'https://api.p2pquake.net/v2/history?codes=551&limit=1';
+      // リクエストconst res = await (await fetch(API_URL)).json();///// 追加 /////// 震央地名const epicenterName = res[0].earthquake.hypocenter.name;// 深さconst depth = res[0].earthquake.hypocenter.depth;// コンソールに出力console.log(epicenterName, depth); }
   </script>
 </body>
 </html>
