@@ -10,7 +10,22 @@
     async function main() {
       // 最新の地震情報が取得できるURL
       const API_URL = 'https://api.p2pquake.net/v2/history?codes=551&limit=1';
-      // リクエストconst res = await (await fetch(API_URL)).json();///// 追加 /////// 震央地名const epicenterName = res[0].earthquake.hypocenter.name;// 深さconst depth = res[0].earthquake.hypocenter.depth;// コンソールに出力console.log(epicenterName, depth); }
+
+      // リクエスト
+      const res = await (await fetch(API_URL)).json();
+
+
+      ///// 追加 /////
+
+      // 震央地名
+      const epicenterName = res[0].earthquake.hypocenter.name;
+
+      // 深さ
+      const depth = res[0].earthquake.hypocenter.depth;
+
+      // コンソールに出力
+      (epicenterName, depth); 
+    }
   </script>
 </body>
 </html>
